@@ -1,6 +1,6 @@
 {% set name = "craftr" %}
-{% set version = "2.0.0.dev5" %}
-{% set sha256 = "39028c3ca3cb8cc7598d62970b19c235c050e3a483dd10fbc6d2d95b4fe5acce" %}
+{% set version = "2.0.0.dev7" %}
+{% set sha256 = "b7e4b7c78f3adb0c78c8bdb8cb82e7118dad2246491fd2c892cf24f42c26d519" %}
 
 package:
   name: {{ name|lower }}
@@ -8,13 +8,13 @@ package:
 
 source:
   fn: {{ name }}-{{ version }}.tar.gz
-  url: https://github.com/craftr-build/craftr/archive/v2.0.0.dev5.tar.gz
+  url: https://github.com/craftr-build/{{ name }}/archive/old-v{{ version }}.tar.gz
   sha256: {{ sha256 }}
 
 build:
   script: python setup.py install --single-version-externally-managed --record record.txt
   number: 0
-  skip: True  # [py2k or py36]
+  skip: True  # [py2k]
 
 requirements:
   build:
@@ -24,6 +24,7 @@ requirements:
   run:
     - python
     - setuptools
+    - cson ==0.7
     - colorama ==0.3.7
     - glob2 ==0.5
     - jsonschema ==2.5.1
